@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=4 uid="uid://dlv2d4xxai5u0"]
+[gd_scene load_steps=6 format=4 uid="uid://dlv2d4xxai5u0"]
 
 [ext_resource type="Texture2D" uid="uid://bv804ertxw2pj" path="res://tilemap/tile_atlas.png" id="1_gdwk8"]
 [ext_resource type="Script" path="res://scripts/Board.gd" id="1_nednn"]
-[ext_resource type="Script" path="res://scripts/BoardNode2D.gd" id="4_81fbl"]
 [ext_resource type="PackedScene" uid="uid://devweu437x54i" path="res://scenes/player.tscn" id="4_tt0wk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2w0ky"]
@@ -31,9 +30,6 @@ default_offset = Vector2(8, 8)
 texture_filter = 1
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAABAAEAAAAAAAAAAAACAAEAAAABAAAAAAACAAIAAAAAAAAAAAADAAIAAAABAAAAAAADAAMAAAAAAAAAAAADAAEAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAABAAAAAAAAAAIAAAAAAAAAAAABAAIAAAABAAAAAAABAAMAAAAAAAAAAAACAAMAAAABAAAAAAAAAAEAAAABAAAAAAAAAAMAAAABAAAAAAA=")
 tile_set = SubResource("TileSet_k8fc1")
-
-[node name="Node2D" type="Node2D" parent="."]
-script = ExtResource("4_81fbl")
 
 [node name="Player" parent="." instance=ExtResource("4_tt0wk")]
 position = Vector2(40, 55)

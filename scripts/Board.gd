@@ -101,7 +101,7 @@ func delete_board_object(grid_pos: Vector2i) -> bool:
 ## If allow_overwrite is false, also returns false if position is not empty.
 ## If reset_position is true, also sets the object's position using the offset.
 func move_board_object(src: Vector2i, dst: Vector2i, reset_position: bool = false,
-offset: Vector2 = default_offset, allow_overwrite: bool = true) -> bool:
+offset: Vector2 = default_offset, allow_overwrite: bool = false) -> bool:
 	if(src == dst):
 		return false
 	var object: BoardNode2D = get_board_object(src)
