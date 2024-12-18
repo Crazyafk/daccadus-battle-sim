@@ -2,6 +2,7 @@ class_name Board extends Node2D
 ##Square Game Board, that manages an array representation of BoardNode2Ds,
 ##and provides functions for managing that array and translating coordinates.
 
+signal tile_clicked()					#Emitted with grid coordinates of the tile clicked
 @export var cellsize : Vector2i 		#The size of each grid cell in pixels
 @export var gridsize : Vector2i			#The size of the grid in cells
 @export var default_offset : Vector2	#Default offset when getting a worldpos from a gridpos
@@ -25,7 +26,10 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("left_click"):
 		var camera : Camera2D = get_viewport().get_camera_2d()
 		var pos : Vector2 = camera.get_global_mouse_position()
-		var clickedNode : BoardNode2D = get_board_object(get_grid_pos(pos))
+		var gridpos : Vector2i = get_grid_pos(pos)
+		tile_clicked.emit(gridpos)
+		
+		var clickedNode : BoardNode2D = get_board_object(gridpos)
 		if(clickedNode):
 			clickedNode.node_clicked.emit()
 		
