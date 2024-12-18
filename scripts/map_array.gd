@@ -19,9 +19,8 @@ func _ready() -> void:
 	is_initiated = true
 	
 	#Test Code
-	print(set_board_object(Vector2i(0,0), player))
-	print(set_board_object(Vector2i(0,0), null, true))
-	print(get_board_object(Vector2i(0,0)))
+	print(set_board_object_here(player, true))
+	print(get_board_object(Vector2i(1,1)))
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("left_click"):
@@ -59,11 +58,26 @@ func get_board_object(grid_pos: Vector2i) -> Node2D:
 		
 # Set object on board, except returns false if not initiated or grid_pos invalid.
 # If allow_overwrite is false, also returns false if position is not empty.
-func set_board_object(grid_pos: Vector2i, object: Node2D, allow_overwrite : bool = false) -> bool:
+func set_board_object(object: Node2D, grid_pos: Vector2i, allow_overwrite : bool = false) -> bool:
 	if(!is_initiated or !grid_pos_valid(grid_pos)):
 		return false
 	elif(!allow_overwrite and get_board_object(grid_pos)):
 		return false
 	else:
 		board[grid_pos.x][grid_pos.y] = object
+		return true
+		
+# Sets given object to the grid position relevant for its global position.
+# Returns false if not initiated or if its global position is outside the grid.
+# If allow_overwrite is false, also returns false if position is not empty.
+# If reset_position is true, also sets the object's position using the offset.
+func set_board_object_here(object: Node2D, reset_position : bool = false,
+offset: Vector2 = default_offset, allow_overwrite : bool = false):
+	var grid_pos : Vector2i = get_grid_pos(object.global_position)
+	print(grid_pos)
+	if(!set_board_object(object, grid_pos, allow_overwrite)):
+		return false
+	else:
+		if(reset_position):
+			object.set_global_position(get_world_pos(grid_pos, offset))
 		return true
