@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=4 uid="uid://dlv2d4xxai5u0"]
+
+[ext_resource type="Texture2D" uid="uid://bv804ertxw2pj" path="res://tilemap/tile_atlas.png" id="1_gdwk8"]
+[ext_resource type="Texture2D" uid="uid://bhaydbdu2wkn0" path="res://sprites/Player.png" id="2_gkwf2"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2w0ky"]
+texture = ExtResource("1_gdwk8")
+texture_region_size = Vector2i(32, 32)
+0:1/0 = 0
+1:1/0 = 0
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_k8fc1"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_2w0ky")
+
+[node name="Main" type="Node2D"]
+
+[node name="MapArray" type="Node" parent="."]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="MapArray"]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAABAAEAAAAAAAAAAAACAAEAAAABAAAAAAACAAIAAAAAAAAAAAADAAIAAAABAAAAAAADAAMAAAAAAAAAAAADAAEAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAABAAAAAAAAAAIAAAAAAAAAAAABAAIAAAABAAAAAAABAAMAAAAAAAAAAAACAAMAAAABAAAAAAAAAAEAAAABAAAAAAAAAAMAAAABAAAAAAA=")
+tile_set = SubResource("TileSet_k8fc1")
+
+[node name="Player" type="Sprite2D" parent="."]
+top_level = true
+texture_filter = 1
+texture = ExtResource("2_gkwf2")
+centered = false
+offset = Vector2(8, 8)
