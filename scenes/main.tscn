@@ -21,6 +21,7 @@ sources/0 = SubResource("TileSetAtlasSource_2w0ky")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="MapArray" type="Node2D" parent="."]
+position = Vector2(100, 100)
 script = ExtResource("1_nednn")
 cellsize = Vector2i(32, 32)
 gridsize = Vector2i(4, 4)
@@ -34,6 +35,6 @@ tile_set = SubResource("TileSet_k8fc1")
 [node name="Player" type="Sprite2D" parent="."]
 top_level = true
 texture_filter = 1
-position = Vector2(66, 40)
+position = Vector2(166, 140)
 texture = ExtResource("2_gkwf2")
 centered = false
