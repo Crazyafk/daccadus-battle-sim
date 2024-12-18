@@ -74,7 +74,7 @@ func set_board_object(object: BoardNode2D, grid_pos: Vector2i, allow_overwrite :
 ## If allow_overwrite is false, also returns false if position is not empty.
 ## If reset_position is true, also sets the object's position using the offset.
 func set_board_object_here(object: BoardNode2D, reset_position : bool = false,
-offset: Vector2 = default_offset, allow_overwrite : bool = false):
+offset: Vector2 = default_offset, allow_overwrite : bool = false) -> bool:
 	var grid_pos : Vector2i = get_grid_pos(object.global_position)
 	if(!set_board_object(object, grid_pos, allow_overwrite)):
 		return false
