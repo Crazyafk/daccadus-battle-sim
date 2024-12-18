@@ -32,6 +32,10 @@ func _process(delta: float) -> void:
 		var clickedNode : BoardNode2D = get_board_object(gridpos)
 		if(clickedNode):
 			clickedNode.node_clicked.emit()
+			
+		#Test Code
+		var src = get_grid_pos(player.get_global_position())
+		print(move_board_object(src, Vector2i(0,0), true))
 		
 func grid_pos_valid(pos : Vector2i) -> bool:
 	return !(pos.x < 0 or pos.x >= gridsize.x or pos.y < 0 or pos.y >= gridsize.y)
@@ -85,4 +89,28 @@ offset: Vector2 = default_offset, allow_overwrite : bool = false) -> bool:
 	else:
 		if(reset_position):
 			object.set_global_position(get_world_pos(grid_pos, offset))
+		return true
+
+## Sets object at grid position to null, returning bool (see set_board_object)
+func delete_board_object(grid_pos: Vector2i) -> bool:
+	return set_board_object(null, grid_pos, true)
+
+## Copies an object from src to dst grid_pos, and only if the copy is successful,
+## is the original removed.
+## Returns false if not initiated or if src or dst are invalid or equal.
+## If allow_overwrite is false, also returns false if position is not empty.
+## If reset_position is true, also sets the object's position using the offset.
+func move_board_object(src: Vector2i, dst: Vector2i, reset_position: bool = false,
+offset: Vector2 = default_offset, allow_overwrite: bool = true) -> bool:
+	if(src == dst):
+		return false
+	var object: BoardNode2D = get_board_object(src)
+	if(!object):
+		return false
+	elif(!set_board_object(object, dst, allow_overwrite)):
+		return false
+	else:
+		delete_board_object(src)
+		if(reset_position):
+			object.set_global_position(get_world_pos(dst, offset))
 		return true
