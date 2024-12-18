@@ -21,13 +21,14 @@ sources/0 = SubResource("TileSetAtlasSource_2w0ky")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Board" type="Node2D" parent="."]
+[node name="MapArray" type="Node2D" parent="."]
+position = Vector2(100, 100)
 script = ExtResource("1_nednn")
 cellsize = Vector2i(32, 32)
 gridsize = Vector2i(4, 4)
 default_offset = Vector2(8, 8)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Board"]
+[node name="TileMapLayer" type="TileMapLayer" parent="MapArray"]
 texture_filter = 1
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAABAAEAAAAAAAAAAAACAAEAAAABAAAAAAACAAIAAAAAAAAAAAADAAIAAAABAAAAAAADAAMAAAAAAAAAAAADAAEAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAABAAAAAAAAAAIAAAAAAAAAAAABAAIAAAABAAAAAAABAAMAAAAAAAAAAAACAAMAAAABAAAAAAAAAAEAAAABAAAAAAAAAAMAAAABAAAAAAA=")
 tile_set = SubResource("TileSet_k8fc1")
@@ -36,4 +37,4 @@ tile_set = SubResource("TileSet_k8fc1")
 script = ExtResource("4_81fbl")
 
 [node name="Player" parent="." instance=ExtResource("4_tt0wk")]
-position = Vector2(40, 55)
+position = Vector2(166, 167)

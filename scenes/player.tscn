@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://devweu437x54i"]
+
+[ext_resource type="Script" path="res://scripts/BoardNode2D.gd" id="1_ylg1n"]
+[ext_resource type="Texture2D" uid="uid://bhaydbdu2wkn0" path="res://sprites/Player.png" id="2_qy1rs"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="3_uag20"]
+
+[node name="BoardNode2D" type="Node2D"]
+script = ExtResource("1_ylg1n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_qy1rs")
+centered = false
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("3_uag20")
+
+[connection signal="node_clicked" from="." to="Node" method="_on_clicked"]
