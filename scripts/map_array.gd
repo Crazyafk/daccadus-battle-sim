@@ -58,11 +58,11 @@ func get_board_object(grid_pos: Vector2i) -> Node2D:
 		return board[grid_pos.x][grid_pos.y]
 		
 # Set object on board, except returns false if not initiated or grid_pos invalid.
-# If do_overwrite is false, also returns false if position is not empty.
-func set_board_object(grid_pos: Vector2i, object: Node2D, do_overwrite : bool = false) -> bool:
+# If allow_overwrite is false, also returns false if position is not empty.
+func set_board_object(grid_pos: Vector2i, object: Node2D, allow_overwrite : bool = false) -> bool:
 	if(!is_initiated or !grid_pos_valid(grid_pos)):
 		return false
-	elif(!do_overwrite and get_board_object(grid_pos)):
+	elif(!allow_overwrite and get_board_object(grid_pos)):
 		return false
 	else:
 		board[grid_pos.x][grid_pos.y] = object
