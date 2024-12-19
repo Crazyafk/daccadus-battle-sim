@@ -6,8 +6,7 @@ signal tile_clicked()					#Emitted with grid coordinates of the tile clicked
 @export var cellsize : Vector2i 		#The size of each grid cell in pixels
 @export var gridsize : Vector2i			#The size of the grid in cells
 @export var default_offset : Vector2	#Default offset when getting a worldpos from a gridpos
-@onready var player: BoardNode2D = $"../Player"
-@onready var map_array: Node2D = $"."
+@onready var player: BoardNode2D = $"../Player" #Test only
 
 var _board = [] #2D array of BoardNode2D, initialised in _ready. empty positions are null. 
 var is_initiated := false
@@ -42,8 +41,8 @@ func grid_pos_valid(pos : Vector2i) -> bool:
 
 ## Get Grid pos of world pos. if outside of grid, return (-1,-1).
 func get_grid_pos(world_pos : Vector2) -> Vector2i:
-	var x = int((world_pos.x - map_array.global_position.x) / cellsize.x)
-	var y = int((world_pos.y - map_array.global_position.y) / cellsize.y)
+	var x = int((world_pos.x - self.global_position.x) / cellsize.x)
+	var y = int((world_pos.y - self.global_position.y) / cellsize.y)
 	var result := Vector2i(x, y)
 	if grid_pos_valid(result):
 		return result
@@ -53,8 +52,8 @@ func get_grid_pos(world_pos : Vector2) -> Vector2i:
 ## Get World pos of Grid pos, plus offset. returns 0,0 for an invalid gridpos.
 func get_world_pos(grid_pos: Vector2i, offset: Vector2 = default_offset) -> Vector2:
 	if(grid_pos_valid(grid_pos)):
-		var x = grid_pos.x * cellsize.x + offset.x + map_array.global_position.x
-		var y = grid_pos.y * cellsize.y + offset.y + map_array.global_position.y
+		var x = grid_pos.x * cellsize.x + offset.x + self.global_position.x
+		var y = grid_pos.y * cellsize.y + offset.y + self.global_position.y
 		return Vector2(x,y)
 	else:
 		return Vector2(0,0)
