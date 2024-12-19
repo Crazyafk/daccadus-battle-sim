@@ -36,8 +36,30 @@ func _process(_delta: float) -> void:
 		var src = get_grid_pos(player.get_global_position())
 		print(move_board_object(src, Vector2i(0,0), true))
 		
+## checks that a grid_pos corresponds to a real board cell
 func grid_pos_valid(pos : Vector2i) -> bool:
 	return !(pos.x < 0 or pos.x >= gridsize.x or pos.y < 0 or pos.y >= gridsize.y)
+	
+## returns false if not initiated or grid_pos invalid.
+## If allow_overwrite is false, also returns false if position is not empty.
+func set_board_valid(grid_pos: Vector2i, allow_overwrite : bool) -> bool:
+	if(!is_initiated or !grid_pos_valid(grid_pos)):
+		return false
+	elif(!allow_overwrite and get_board_object(grid_pos)):
+		return false
+	return true
+
+## Returns false if not initiated or if src or dst are invalid or equal.
+## If allow_overwrite is false, also returns false if position is not empty.
+func move_board_valid(src: Vector2i, dst: Vector2i, allow_overwrite: bool) -> bool:
+	if(!set_board_valid(dst, allow_overwrite)):
+		return false
+	if(src == dst):
+		return false
+	var object: BoardNode2D = get_board_object(src)
+	if(!object):
+		return false
+	return true
 
 ## Get Grid pos of world pos. if outside of grid, return (-1,-1).
 func get_grid_pos(world_pos : Vector2) -> Vector2i:
@@ -65,12 +87,9 @@ func get_board_object(grid_pos: Vector2i) -> Node2D:
 	else:
 		return _board[grid_pos.x][grid_pos.y]
 		
-## Set object on board, except returns false if not initiated or grid_pos invalid.
-## If allow_overwrite is false, also returns false if position is not empty.
+## Set object on board. see set_board_valid for checks.
 func set_board_object(object: BoardNode2D, grid_pos: Vector2i, allow_overwrite : bool = false) -> bool:
-	if(!is_initiated or !grid_pos_valid(grid_pos)):
-		return false
-	elif(!allow_overwrite and get_board_object(grid_pos)):
+	if !set_board_valid(grid_pos, allow_overwrite):
 		return false
 	else:
 		_board[grid_pos.x][grid_pos.y] = object
@@ -95,21 +114,15 @@ func delete_board_object(grid_pos: Vector2i) -> bool:
 	return set_board_object(null, grid_pos, true)
 
 ## Copies an object from src to dst grid_pos, and only if the copy is successful,
-## is the original removed.
-## Returns false if not initiated or if src or dst are invalid or equal.
-## If allow_overwrite is false, also returns false if position is not empty.
+## is the original removed. see move_board_valid for checks.
 ## If reset_position is true, also sets the object's position using the offset.
 func move_board_object(src: Vector2i, dst: Vector2i, reset_position: bool = false,
 offset: Vector2 = default_offset, allow_overwrite: bool = false) -> bool:
-	if(src == dst):
-		return false
 	var object: BoardNode2D = get_board_object(src)
-	if(!object):
+	if(!move_board_valid(src, dst, allow_overwrite)):
 		return false
-	elif(!set_board_object(object, dst, allow_overwrite)):
-		return false
-	else:
-		delete_board_object(src)
-		if(reset_position):
-			object.set_global_position(get_world_pos(dst, offset))
-		return true
+	set_board_object(object, dst, allow_overwrite)
+	delete_board_object(src)
+	if(reset_position):
+		object.set_global_position(get_world_pos(dst, offset))
+	return true
