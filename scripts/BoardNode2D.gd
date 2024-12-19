@@ -8,14 +8,16 @@ class_name BoardNode2D extends Node2D
 @warning_ignore("unused_signal")
 signal node_clicked #Emitted by the Board directly
 @onready var board: Board = $"../Board"
+@export var add_to_board: bool = true
 @export var reset_position: bool = true
 @export var use_default_offset: bool = true
 @export var offset: Vector2 = Vector2(0,0)
 
 func _ready() -> void:
-	var isError: bool
-	if(use_default_offset):
-		isError = !board.set_board_object_here(self, reset_position)
-	else:
-		isError = !board.set_board_object_here(self, reset_position, offset)
-	assert(!isError)
+	if(add_to_board):
+		var isError: bool
+		if(use_default_offset):
+			isError = !board.set_board_object_here(self, reset_position)
+		else:
+			isError = !board.set_board_object_here(self, reset_position, offset)
+		assert(!isError)
