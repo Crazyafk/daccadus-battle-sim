@@ -21,7 +21,7 @@ func _ready() -> void:
 	#Complete initialisation
 	is_initiated = true
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("left_click"):
 		var camera : Camera2D = get_viewport().get_camera_2d()
 		var pos : Vector2 = camera.get_global_mouse_position()

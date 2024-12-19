@@ -5,6 +5,7 @@ class_name BoardNode2D extends Node2D
 ##Assumes a Board object named Board is at the top of the scene, will not work otherwise.
 ##Assigns self to the Board space it occupies on ready.
 
+@warning_ignore("unused_signal")
 signal node_clicked #Emitted by the Board directly
 @onready var board: Board = $"../Board"
 @export var reset_position: bool = true
