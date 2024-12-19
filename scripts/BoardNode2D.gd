@@ -7,7 +7,6 @@ class_name BoardNode2D extends Node2D
 
 @warning_ignore("unused_signal")
 signal node_clicked #Emitted by the Board directly
-signal tile_clicked #Relayed
 @onready var board: Board = $"../Board"
 @export var add_to_board: bool = true
 @export var reset_position: bool = true
