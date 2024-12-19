@@ -6,7 +6,6 @@ signal tile_clicked()					#Emitted with grid coordinates of the tile clicked
 @export var cellsize : Vector2i 		#The size of each grid cell in pixels
 @export var gridsize : Vector2i			#The size of the grid in cells
 @export var default_offset : Vector2	#Default offset when getting a worldpos from a gridpos
-@onready var player: BoardNode2D = $"../Player" #Test only
 
 var _board = [] #2D array of BoardNode2D, initialised in _ready. empty positions are null. 
 var is_initiated := false
@@ -31,10 +30,6 @@ func _process(_delta: float) -> void:
 		var clickedNode : BoardNode2D = get_board_object(gridpos)
 		if(clickedNode):
 			clickedNode.node_clicked.emit()
-			
-		#Test Code
-		var src = get_grid_pos(player.get_global_position())
-		print(move_board_object(src, Vector2i(0,0), true))
 		
 ## checks that a grid_pos corresponds to a real board cell
 func grid_pos_valid(pos : Vector2i) -> bool:

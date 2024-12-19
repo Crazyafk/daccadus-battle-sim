@@ -7,6 +7,7 @@ class_name BoardNode2D extends Node2D
 
 @warning_ignore("unused_signal")
 signal node_clicked #Emitted by the Board directly
+signal tile_clicked #Relayed
 @onready var board: Board = $"../Board"
 @export var add_to_board: bool = true
 @export var reset_position: bool = true
@@ -21,3 +22,6 @@ func _ready() -> void:
 		else:
 			isError = !board.set_board_object_here(self, reset_position, offset)
 		assert(!isError)
+		
+func get_grid_pos() -> Vector2i:
+	return board.get_grid_pos(self.get_global_position())
