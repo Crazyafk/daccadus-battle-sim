@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/BoardNode2D.gd" id="1_ylg1n"]
 [ext_resource type="Texture2D" uid="uid://bhaydbdu2wkn0" path="res://sprites/Player.png" id="2_qy1rs"]
-[ext_resource type="Script" path="res://scripts/Player.gd" id="3_uag20"]
+[ext_resource type="Script" path="res://scripts/Character.gd" id="3_uag20"]
 [ext_resource type="Script" path="res://scripts/operations/Move.gd" id="5_l68ns"]
 
 [node name="BoardNode2D" type="Node2D"]

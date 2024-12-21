@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=4 uid="uid://dlv2d4xxai5u0"]
+[gd_scene load_steps=7 format=4 uid="uid://dlv2d4xxai5u0"]
 
 [ext_resource type="Texture2D" uid="uid://bv804ertxw2pj" path="res://tilemap/tile_atlas.png" id="1_gdwk8"]
 [ext_resource type="Script" path="res://scripts/Board.gd" id="1_nednn"]
+[ext_resource type="Script" path="res://scripts/TurnOrderManager.gd" id="3_cieoi"]
 [ext_resource type="PackedScene" uid="uid://devweu437x54i" path="res://scenes/player.tscn" id="4_tt0wk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2w0ky"]
@@ -31,5 +32,32 @@ texture_filter = 1
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAABAAEAAAAAAAAAAAACAAEAAAABAAAAAAACAAIAAAAAAAAAAAADAAIAAAABAAAAAAADAAMAAAAAAAAAAAADAAEAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAABAAAAAAAAAAIAAAAAAAAAAAABAAIAAAABAAAAAAABAAMAAAAAAAAAAAACAAMAAAABAAAAAAAAAAEAAAABAAAAAAAAAAMAAAABAAAAAAA=")
 tile_set = SubResource("TileSet_k8fc1")
 
+[node name="TurnOrderManager" type="Node" parent="."]
+script = ExtResource("3_cieoi")
+
+[node name="Timer" type="Timer" parent="TurnOrderManager"]
+wait_time = 0.05
+one_shot = true
+
 [node name="Player" parent="." instance=ExtResource("4_tt0wk")]
 position = Vector2(40, 8)
+
+[node name="Player2" parent="." instance=ExtResource("4_tt0wk")]
+position = Vector2(70, 8)
+
+[node name="Player" parent="Player2" index="1"]
+dexterity = 1
+wisdom = 1
+
+[node name="Player3" parent="." instance=ExtResource("4_tt0wk")]
+position = Vector2(40, 70)
+
+[node name="Player" parent="Player3" index="1"]
+dexterity = 2
+wisdom = -3
+
+[connection signal="timeout" from="TurnOrderManager/Timer" to="TurnOrderManager" method="startInitiative"]
+
+[editable path="Player"]
+[editable path="Player2"]
+[editable path="Player3"]
