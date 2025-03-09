@@ -28,11 +28,12 @@ func _ready() -> void:
 	turn_order_manager.addChar(self)
 	
 func _board_tile_clicked(click_pos: Vector2i) -> void:
-	print("tile clicked!")
-	if(selected_operation.isValid(world_pos, click_pos)):
-		selected_operation.execute(world_pos, click_pos)
-	else:
-		print("operation failed")
+	if(isMyTurn):
+		print("tile clicked!")
+		if(selected_operation.isValid(world_pos, click_pos)):
+			selected_operation.execute(world_pos, click_pos)
+		else:
+			print("operation failed")
 		
 func startTurn() -> void:
 	isMyTurn = true
