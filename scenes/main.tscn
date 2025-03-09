@@ -63,5 +63,8 @@ wisdom = -3
 [connection signal="timeout" from="TurnOrderManager/Timer" to="TurnOrderManager" method="startInitiative"]
 
 [editable path="Player"]
+[editable path="Player/Player/Operations/Move"]
 [editable path="Player2"]
+[editable path="Player2/Player/Operations/Move"]
 [editable path="Player3"]
+[editable path="Player3/Player/Operations/Move"]
