@@ -12,8 +12,8 @@ func startInitiative() -> void:
 	print(_order[2].board_node_2d)
 	nextTurn()
 
-func addChar(char: Character) -> void:
-	_order.append(char)
+func addChar(_char: Character) -> void:
+	_order.append(_char)
 
 func nextTurn() -> void:
 	currIndex += 1
