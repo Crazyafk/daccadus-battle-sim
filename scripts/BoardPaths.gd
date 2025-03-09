@@ -20,8 +20,12 @@ func initialise(_board : Board) -> void:
 ## Returns an empty array if the board is not initialised,
 ## Or if either input is not a valid gridpos.
 func get_grid_path(src: Vector2i, dst: Vector2i) -> Array:
+	print("dst solid:")
+	print(a_star.is_point_solid(dst))
 	if(!board.is_initiated):
+		print("not initiated!")
 		return []
 	if(!board.grid_pos_valid(src) or !board.grid_pos_valid(dst)):
+		print("invalid!")
 		return []
 	return a_star.get_id_path(src, dst)

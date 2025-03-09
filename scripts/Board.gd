@@ -90,6 +90,8 @@ func set_board_object(object: BoardNode2D, grid_pos: Vector2i, allow_overwrite :
 		return false
 	else:
 		_board[grid_pos.x][grid_pos.y] = object
+		if(object):
+			board_paths.a_star.set_point_solid(grid_pos, true)
 		return true
 		
 ## Sets given object to the grid position relevant for its global position.
@@ -108,6 +110,7 @@ offset: Vector2 = default_offset, allow_overwrite : bool = false) -> bool:
 
 ## Sets object at grid position to null, returning bool (see set_board_object)
 func delete_board_object(grid_pos: Vector2i) -> bool:
+	board_paths.a_star.set_point_solid(grid_pos, false)
 	return set_board_object(null, grid_pos, true)
 
 ## Copies an object from src to dst grid_pos, and only if the copy is successful,
