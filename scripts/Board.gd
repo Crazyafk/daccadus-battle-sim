@@ -9,6 +9,7 @@ signal tile_clicked()					#Emitted with grid coordinates of the tile clicked
 
 var _board = [] #2D array of BoardNode2D, initialised in _ready. empty positions are null. 
 var is_initiated := false
+@onready var board_paths: BoardPaths = $BoardPaths
 
 func _ready() -> void:
 	#Initialise Board
@@ -16,6 +17,7 @@ func _ready() -> void:
 		_board.append([])
 		for j in range(gridsize.y):
 			_board[i].append(null)
+	board_paths.initialise(self)
 			
 	#Complete initialisation
 	is_initiated = true
