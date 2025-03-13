@@ -23,6 +23,9 @@ sources/0 = SubResource("TileSetAtlasSource_2w0ky")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="DieRoller" type="Node" parent="."]
+script = ExtResource("6_5i18e")
+
 [node name="Board" type="Node2D" parent="."]
 script = ExtResource("1_nednn")
 cellsize = Vector2i(32, 32)
@@ -60,9 +63,6 @@ position = Vector2(40, 70)
 [node name="Player" parent="Player3" index="1"]
 dexterity = 2
 wisdom = -3
-
-[node name="DieRoller" type="Node" parent="."]
-script = ExtResource("6_5i18e")
 
 [connection signal="timeout" from="TurnOrderManager/Timer" to="TurnOrderManager" method="startInitiative"]
 

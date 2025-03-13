@@ -8,7 +8,7 @@ func _ready() -> void:
 	timer.start() #Wait for all Characters to add themselves before starting initiative
 	
 func startInitiative() -> void:
-	_order.sort_custom(func(a, b): return a.initiative > b.initiative)
+	_order.sort_custom(func(a, b): return a.initiative_roll > b.initiative_roll)
 	print(_order[2].board_node_2d)
 	nextTurn()
 
