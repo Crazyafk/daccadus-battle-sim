@@ -8,6 +8,7 @@ class_name BoardNode2D extends Node2D
 @warning_ignore("unused_signal")
 signal node_clicked #Emitted by the Board directly
 @onready var board: Board = $"../Board"
+@onready var d: DieRoller = $"../DieRoller"
 @export var add_to_board: bool = true
 @export var reset_position: bool = true
 @export var use_default_offset: bool = true
